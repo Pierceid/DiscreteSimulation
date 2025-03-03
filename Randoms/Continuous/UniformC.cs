@@ -1,0 +1,18 @@
+﻿using DiscreteSimulation.Randoms.Structures;
+
+namespace DiscreteSimulation.Randoms.Continuous {
+    public class UniformC : GeneralRandom<double> {
+        private double min;
+        private double max;
+
+        public UniformC(double min, double max, int seed = 0) {
+            this.min = min;
+            this.max = max;
+            Seed = seed;
+        }
+
+        public override double Next() {
+            return this.min + (this.max - this.min) * Generator.NextDouble();
+        }
+    }
+}
