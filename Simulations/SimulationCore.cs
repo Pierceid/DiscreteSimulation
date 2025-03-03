@@ -12,37 +12,34 @@ namespace DiscreteSimulation.Simulations {
             this.currentReplication = 0;
         }
 
-        public void Simulate(long replicationsCount) {
-            Task.Run(() => {
-                BeforeSimulationRun();
+        public void RunSimulation() {
+            this.thread = new(Simulate);
+            this.thread.Start();
+        }
 
-                Stopwatch stopwatch = Stopwatch.StartNew();
+        private void Simulate() {
+            BeforeSimulationRun();
 
-                for (int current = 0; current < replicationsCount; current++) {
-                    BeforeSimulation();
-                    Experiment();
-                    AfterSimulation();
+            Stopwatch stopwatch = Stopwatch.StartNew();
 
-                    if (current % 1000 == 0) {
-                        Console.WriteLine($"Replication {current}. finished in {stopwatch.ElapsedMilliseconds} ms");
-                        stopwatch.Restart();
-                    }
+            for (int current = 0; current < this.replicationsCount; current++) {
+                BeforeSimulation();
+                Experiment();
+                AfterSimulation();
+
+                if (current % 1000 == 0) {
+                    Console.WriteLine($"Replication {current}. Finished in {stopwatch.ElapsedMilliseconds} ms");
+                    stopwatch.Restart();
                 }
+            }
 
-                stopwatch.Stop();
-
-                AfterSimulationRun();
-            });
+            AfterSimulationRun();
         }
 
         public abstract void Experiment();
-
         public abstract void BeforeSimulation();
-
         public abstract void AfterSimulation();
-
         public abstract void BeforeSimulationRun();
-
         public abstract void AfterSimulationRun();
     }
 }
