@@ -1,6 +1,4 @@
-﻿using DiscreteSimulation.Strategies;
-
-namespace DiscreteSimulation.Randoms.Strategies {
+﻿namespace DiscreteSimulation.Strategies {
     public class StrategyB : Strategy {
         public override void DetermineSupplier(int week) {
             if (week < supplier2Switch) {

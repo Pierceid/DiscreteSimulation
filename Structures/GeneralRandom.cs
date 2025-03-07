@@ -1,4 +1,4 @@
-﻿namespace DiscreteSimulation.Randoms.Structures {
+﻿namespace DiscreteSimulation.Structures {
     public abstract class GeneralRandom<T> {
         public int Seed { get; set; }
         public Random Generator { get; set; }

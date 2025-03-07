@@ -1,5 +1,4 @@
-﻿using DiscreteSimulation.Randoms.Strategies;
-using DiscreteSimulation.Strategies;
+﻿using DiscreteSimulation.Strategies;
 
 namespace DiscreteSimulation.Simulations {
     class Warehouse(int replicationStock) : SimulationCore(replicationStock) {

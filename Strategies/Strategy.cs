@@ -1,6 +1,6 @@
 ﻿using DiscreteSimulation.Randoms.Continuous;
 using DiscreteSimulation.Randoms.Discrete;
-using DiscreteSimulation.Randoms.Structures;
+using DiscreteSimulation.Structures;
 
 namespace DiscreteSimulation.Strategies {
     public abstract class Strategy {
@@ -47,7 +47,7 @@ namespace DiscreteSimulation.Strategies {
             new EmpiricData<int>(140, 160, 0.1)
         ];
 
-        private static readonly List<EmpiricData<double>> supplier2LeadTimeInitialSamples =
+        private static readonly List<EmpiricData<double>> supplier2InitialSamples =
         [
             new EmpiricData<double>(0.05, 0.1, 0.4),
             new EmpiricData<double>(0.1, 0.5, 0.3),
@@ -56,7 +56,7 @@ namespace DiscreteSimulation.Strategies {
             new EmpiricData<double>(0.8, 0.95, 0.04)
         ];
 
-        private static readonly List<EmpiricData<double>> supplier2LeadTimeAdjustedSamples =
+        private static readonly List<EmpiricData<double>> supplier2AdjustedSamples =
         [
             new EmpiricData<double>(0.05, 0.1, 0.2),
             new EmpiricData<double>(0.1, 0.5, 0.4),
@@ -71,8 +71,8 @@ namespace DiscreteSimulation.Strategies {
             lightDemand = new EmpiricD(lightDemandSamples);
             supplier1Initial = new UniformC(0.1, 0.7);
             supplier1Adjusted = new UniformC(0.3, 0.95);
-            supplier2Initial = new EmpiricC(supplier2LeadTimeInitialSamples);
-            supplier2Adjusted = new EmpiricC(supplier2LeadTimeAdjustedSamples);
+            supplier2Initial = new EmpiricC(supplier2InitialSamples);
+            supplier2Adjusted = new EmpiricC(supplier2AdjustedSamples);
             rng = new UniformC(0, 1);
         }
 

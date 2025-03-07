@@ -1,4 +1,4 @@
-﻿using DiscreteSimulation.Randoms.Structures;
+﻿using DiscreteSimulation.Structures;
 
 namespace DiscreteSimulation.Randoms.Continuous {
     public class EmpiricC : EmpiricDistribution<double> {
