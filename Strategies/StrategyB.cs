@@ -1,17 +1,13 @@
 ﻿namespace DiscreteSimulation.Strategies {
     public class StrategyB : Strategy {
         public override void DetermineSupplier(int week) {
-            if (week < supplier2Switch) {
+            if (week < SUPPLIER2_SWITCH) {
                 if (rng.Next() < supplier2Initial.Next()) {
-                    mufflerStock += mufflerSupply;
-                    brakeStock += brakeSupply;
-                    lightStock += lightSupply;
+                    RestockComponents();
                 }
             } else {
                 if (rng.Next() < supplier2Adjusted.Next()) {
-                    mufflerStock += mufflerSupply;
-                    brakeStock += brakeSupply;
-                    lightStock += lightSupply;
+                    RestockComponents();
                 }
             }
         }
