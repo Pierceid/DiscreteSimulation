@@ -1,14 +1,12 @@
-﻿using System.Diagnostics;
-
-namespace DiscreteSimulation.Simulations {
+﻿namespace DiscreteSimulation.Simulations {
     public abstract class SimulationCore {
         protected Thread? thread;
-        protected long replicationsCount;
-        protected long currentReplication;
+        protected int replicationStock;
+        protected int currentReplication;
 
-        protected SimulationCore(long replicationsCount) {
+        protected SimulationCore(int replicationStock) {
             this.thread = null;
-            this.replicationsCount = replicationsCount;
+            this.replicationStock = replicationStock;
             this.currentReplication = 0;
         }
 
@@ -20,17 +18,10 @@ namespace DiscreteSimulation.Simulations {
         private void Simulate() {
             BeforeSimulationRun();
 
-            Stopwatch stopwatch = Stopwatch.StartNew();
-
-            for (int current = 0; current < this.replicationsCount; current++) {
+            for (this.currentReplication = 0; this.currentReplication < this.replicationStock; this.currentReplication++) {
                 BeforeSimulation();
                 Experiment();
                 AfterSimulation();
-
-                if (current % 1000 == 0) {
-                    Console.WriteLine($"Replication {current}. Finished in {stopwatch.ElapsedMilliseconds} ms");
-                    stopwatch.Restart();
-                }
             }
 
             AfterSimulationRun();

@@ -2,7 +2,7 @@
     public abstract class GeneralRandom<T> {
         public int Seed { get; set; }
         public Random Generator { get; set; }
-        private static readonly Random random = new(0);
+        private static readonly Random random = new();
 
         public GeneralRandom() {
             Seed = GetNextSeed();

@@ -5,14 +5,13 @@ namespace DiscreteSimulation.Randoms.Discrete {
         private int min;
         private int max;
 
-        public UniformD(int min, int max, int seed = 0) {
+        public UniformD(int min, int max) {
             this.min = min;
             this.max = max;
-            Seed = seed;
         }
 
         public override int Next() {
-            return Generator.Next(this.min, this.max + 1);
+            return Generator.Next(this.min, this.max);
         }
     }
 }

@@ -5,10 +5,9 @@ namespace DiscreteSimulation.Randoms.Continuous {
         private double min;
         private double max;
 
-        public UniformC(double min, double max, int seed = 0) {
+        public UniformC(double min, double max) {
             this.min = min;
             this.max = max;
-            Seed = seed;
         }
 
         public override double Next() {

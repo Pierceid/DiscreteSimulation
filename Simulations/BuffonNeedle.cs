@@ -1,5 +1,5 @@
 ﻿namespace DiscreteSimulation.Simulations {
-    public class BuffonNeedle(long replicationsCount) : SimulationCore(replicationsCount) {
+    public class BuffonNeedle(int replicationStock) : SimulationCore(replicationStock) {
         private Random random = new();
         private double needleLength = 5.0;
         private double distance = 10.0;
@@ -26,7 +26,7 @@
         }
 
         public override void AfterSimulationRun() {
-            double estimatedPi = (2.0 * this.needleLength * this.replicationsCount) / (this.distance * this.intersectionCount);
+            double estimatedPi = (2.0 * this.needleLength * this.replicationStock) / (this.distance * this.intersectionCount);
             Console.WriteLine($"\nEstimated PI: {estimatedPi}\n");
         }
     }

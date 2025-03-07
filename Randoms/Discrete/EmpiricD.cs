@@ -5,17 +5,17 @@ namespace DiscreteSimulation.Randoms.Discrete {
         private List<EmpiricData<int>> samples;
         private List<UniformD> generators;
 
-        public EmpiricD(List<EmpiricData<int>> samples, int seed = 0) : base(samples, seed) {
+        public EmpiricD(List<EmpiricData<int>> samples) : base(samples) {
             this.samples = new(samples.Count);
             this.generators = new(samples.Count);
 
             double cumProb = 0.0;
 
-            samples.ForEach(sample => {
-                EmpiricData<int> data = new(sample.Range, sample.Probability + cumProb);
+            samples.ForEach(s => {
+                EmpiricData<int> data = new(s.Range.First, s.Range.Second, s.Probability + cumProb);
                 this.samples.Add(data);
-                this.generators.Add(new(sample.Range.First, sample.Range.Second, sample.Seed));
-                cumProb += sample.Probability;
+                this.generators.Add(new(s.Range.First, s.Range.Second));
+                cumProb += s.Probability;
             });
         }
 

@@ -4,9 +4,30 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiscreteSimulation"
+        xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="6*"/>
+        </Grid.RowDefinitions>
+        
+        <GroupBox Grid.Row="0" Height="60" VerticalAlignment="Top">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
+                <!-- Buttons in each column -->
+                <Button x:Name="btn1" Grid.Column="0" Content="Button 1" Margin="30,5" Click="ButtonClick"/>
+                <Button x:Name="btn2" Grid.Column="1" Content="Button 2" Margin="30,5" Click="ButtonClick"/>
+            </Grid>
+        </GroupBox>
+
+        <oxy:PlotView x:Name="plotView" Grid.Row="1" />
     </Grid>
 </Window>
