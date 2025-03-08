@@ -4,6 +4,7 @@
         protected int replicationStock;
         protected int currentReplication;
         protected bool isRunning;
+
         protected SimulationCore(int replicationStock) {
             this.thread = null;
             this.replicationStock = replicationStock;

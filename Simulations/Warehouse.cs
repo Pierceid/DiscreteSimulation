@@ -3,11 +3,7 @@
 namespace DiscreteSimulation.Simulations {
     public class Warehouse(int replicationStock) : SimulationCore(replicationStock) {
         public Strategy? Strategy { get; set; } = null;
-        private Action<int, double>? callback;
-
-        public void SetReplicationCallback(Action<int, double> callback) {
-            this.callback = callback;
-        }
+        public Action<int, double>? Callback { get; set; } = null;
 
         public override void AfterSimulation() {
 
@@ -33,7 +29,7 @@ namespace DiscreteSimulation.Simulations {
 
                 if (currentReplication % 1000 == 0) {
                     double averageCost = Strategy.TotalCost / (currentReplication + 1);
-                    callback?.Invoke(currentReplication, averageCost);
+                    Callback?.Invoke(currentReplication, averageCost);
                 }
             }
         }
