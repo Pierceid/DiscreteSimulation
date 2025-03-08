@@ -1,9 +1,9 @@
 ﻿using DiscreteSimulation.Randoms.Continuous;
 using DiscreteSimulation.Randoms.Discrete;
-using DiscreteSimulation.Randoms.Utilities;
 using DiscreteSimulation.Structures;
+using DiscreteSimulation.Utilities;
 
-namespace DiscreteSimulation.Randoms.Tests {
+namespace DiscreteSimulation.Tests {
     public class EmpiricTests {
         public void TestDiscreteEmpiricDistribution() {
             var bins = new List<EmpiricData<int>> {

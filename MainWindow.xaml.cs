@@ -1,5 +1,6 @@
 ﻿using DiscreteSimulation.Presentation;
 using DiscreteSimulation.Strategies;
+using DiscreteSimulation.Utilities;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -16,6 +17,7 @@ namespace DiscreteSimulation {
         private void ButtonClick(object sender, RoutedEventArgs e) {
             if (sender is Button button) {
                 if (button == btnStart) {
+                    UpdateStrategy();
                     facade.StartSimulation();
                 } else if (button == btnStop) {
                     facade.StopSimulation();
@@ -45,7 +47,7 @@ namespace DiscreteSimulation {
                     facade.SetStrategy(new StrategyD());
                     break;
                 case 4:
-                    facade.SetStrategy(new StrategyX());
+                    facade.SetStrategy(Utility.ParseStrategyX(txtMufflers.Text, txtBrakes.Text, txtLights.Text, chkSupplier1.IsChecked, chkSupplier2.IsChecked));
                     break;
                 default:
                     break;
@@ -54,9 +56,9 @@ namespace DiscreteSimulation {
 
         private void UpdateUI() {
             if (cbStrategies.SelectedIndex == 4) {
-                groupBoxStrategyXControls.Visibility = Visibility.Visible;
+                gbStrategyXControls.Visibility = Visibility.Visible;
             } else {
-                groupBoxStrategyXControls.Visibility = Visibility.Collapsed;
+                gbStrategyXControls.Visibility = Visibility.Collapsed;
             }
         }
     }

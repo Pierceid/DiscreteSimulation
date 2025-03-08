@@ -38,7 +38,7 @@
             </GroupBox>
 
             <!-- GroupBox for Strategy X Controls -->
-            <GroupBox x:Name="groupBoxStrategyXControls" Header="Strategy X Controls" Margin="4" Visibility="Collapsed">
+            <GroupBox x:Name="gbStrategyXControls" Header="Strategy X Controls" Margin="4" Visibility="Collapsed">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
