@@ -7,34 +7,83 @@
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="6*"/>
-        </Grid.RowDefinitions>
+    <Grid Margin="4">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="4.5*"/>
+        </Grid.ColumnDefinitions>
 
-        <GroupBox Grid.Row="0" Height="60" VerticalAlignment="Top">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+        <!-- Left Column: Controls -->
+        <StackPanel Grid.Column="0">
+            <!-- GroupBox for Buttons and ComboBox -->
+            <GroupBox Header="Simulation Controls" Margin="4">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
 
-                <!-- Buttons in each column -->
-                <Button x:Name="btnStart" Grid.Column="0" Content="Button 1" Margin="36,8" Click="ButtonClick"/>
-                <Button x:Name="btnStop" Grid.Column="1" Content="Button 2" Margin="36,8" Click="ButtonClick"/>
-                <ComboBox x:Name="cbStrategies" Grid.Column="2" Margin="36,16" SelectionChanged="SelectionChanged">
-                    <ComboBoxItem x:Name="StartegyA" Content="Startegy A" />
-                    <ComboBoxItem x:Name="StartegyB" Content="Startegy B" />
-                    <ComboBoxItem x:Name="StartegyC" Content="Startegy C" />
-                    <ComboBoxItem x:Name="StartegyD" Content="Startegy D" />
-                    <ComboBoxItem x:Name="StartegyE" Content="Startegy E" />
-                </ComboBox>
-            </Grid>
-        </GroupBox>
+                    <!-- Buttons and ComboBox -->
+                    <Button x:Name="btnStart" Grid.Row="0" Content="Start" Height="24" Click="ButtonClick" Margin="4"/>
+                    <Button x:Name="btnStop" Grid.Row="1" Content="Stop" Height="24" Click="ButtonClick" Margin="4"/>
+                    <ComboBox x:Name="cbStrategies" Grid.Row="2" Height="24" SelectionChanged="SelectionChanged" Margin="4">
+                        <ComboBoxItem x:Name="StrategyA" Content="Strategy A"/>
+                        <ComboBoxItem x:Name="StrategyB" Content="Strategy B"/>
+                        <ComboBoxItem x:Name="StrategyC" Content="Strategy C"/>
+                        <ComboBoxItem x:Name="StrategyD" Content="Strategy D"/>
+                        <ComboBoxItem x:Name="StrategyX" Content="Strategy X"/>
+                    </ComboBox>
+                </Grid>
+            </GroupBox>
 
-        <oxy:PlotView x:Name="plotView" Grid.Row="1" />
+            <!-- GroupBox for Strategy X Controls -->
+            <GroupBox x:Name="groupBoxStrategyXControls" Header="Strategy X Controls" Margin="4" Visibility="Collapsed">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Labels and TextBoxes for Mufflers, Brakes, and Lights -->
+                    <Grid Grid.Row="0" Margin="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Mufflers:" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                        <TextBox x:Name="txtMufflers" Grid.Column="1" Height="24"/>
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Brakes:" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                        <TextBox x:Name="txtBrakes" Grid.Column="1" Height="24"/>
+                    </Grid>
+
+                    <Grid Grid.Row="2" Margin="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <Label Content="Lights:" VerticalAlignment="Center" Margin="0,0,4,0"/>
+                        <TextBox x:Name="txtLights" Grid.Column="1" Height="24"/>
+                    </Grid>
+
+                    <!-- CheckBoxes for Suppliers -->
+                    <CheckBox x:Name="chkSupplier1" Grid.Row="3" Content="Supplier 1" Margin="4"/>
+                    <CheckBox x:Name="chkSupplier2" Grid.Row="4" Content="Supplier 2" Margin="4"/>
+                </Grid>
+            </GroupBox>
+        </StackPanel>
+
+        <!-- Right Column: PlotView -->
+        <oxy:PlotView x:Name="plotView" Grid.Column="1" Margin="4"/>
     </Grid>
 </Window>

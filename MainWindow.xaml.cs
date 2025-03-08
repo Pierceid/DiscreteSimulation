@@ -22,6 +22,7 @@ namespace DiscreteSimulation {
             new StrategyB(),
             new StrategyC(),
             new StrategyD(),
+            new StrategyX()
         ];
 
         public MainWindow() {
@@ -44,10 +45,12 @@ namespace DiscreteSimulation {
             plotView.Model = model;
 
             isRunning = false;
+
+            cbStrategies.SelectedIndex = 0;
         }
 
         private void OnReplicationCompleted(int replication, double cost) {
-            Dispatcher.Invoke((Delegate)(() => UpdatePlot(replication, cost)));
+            Dispatcher.Invoke(() => UpdatePlot(replication, cost));
         }
 
         private void UpdatePlot(int replication, double cost) {
@@ -65,13 +68,10 @@ namespace DiscreteSimulation {
             if (isRunning || warehouse.Strategy == null) return;
 
             isRunning = true;
-            series.Points.Clear();
-            model.InvalidatePlot(true);
 
-            simulationThread = new Thread(() => {
-                warehouse.RunSimulation();
-                isRunning = false;
-            });
+            RefreshGraph();
+
+            simulationThread = new Thread(() => warehouse.RunSimulation());
 
             simulationThread.Start();
         }
@@ -79,7 +79,10 @@ namespace DiscreteSimulation {
         private void StopSimulation() {
             isRunning = false;
             warehouse.Stop();
+            warehouse = new Warehouse(1_000_000);
+            warehouse.SetReplicationCallback(OnReplicationCompleted);
             simulationThread?.Join();
+            simulationThread = null;
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e) {
@@ -93,11 +96,32 @@ namespace DiscreteSimulation {
         }
 
         private void SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            if (sender is ComboBox comboBox) {
-                if (comboBox == cbStrategies && !isRunning) {
-                    warehouse.Strategy = strategies[comboBox.SelectedIndex];
+            if (sender is ComboBox comboBox && comboBox == cbStrategies) {
+                if (isRunning) {
                     StopSimulation();
                 }
+
+                warehouse.Strategy = strategies[comboBox.SelectedIndex];
+
+                RefreshGraph();
+                UpdateUI();
+            }
+        }
+
+        private void RefreshGraph() {
+            series.Points.Clear();
+            xAxis.Minimum = 0;
+            xAxis.Maximum = 1000;
+            yAxis.Minimum = 0;
+            yAxis.Maximum = 1000;
+            model.InvalidatePlot(true);
+        }
+
+        private void UpdateUI() {
+            if (warehouse.Strategy is StrategyX) {
+                groupBoxStrategyXControls.Visibility = Visibility.Visible;
+            } else {
+                groupBoxStrategyXControls.Visibility = Visibility.Collapsed;
             }
         }
     }
