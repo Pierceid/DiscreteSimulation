@@ -1,7 +1,7 @@
 ﻿using DiscreteSimulation.Randoms.Continuous;
 using DiscreteSimulation.Randoms.Discrete;
-using DiscreteSimulation.Randoms.Structures;
 using DiscreteSimulation.Randoms.Utilities;
+using DiscreteSimulation.Structures;
 
 namespace DiscreteSimulation.Randoms.Tests {
     public class EmpiricTests {

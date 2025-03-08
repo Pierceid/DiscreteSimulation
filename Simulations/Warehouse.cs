@@ -1,15 +1,20 @@
 ﻿using DiscreteSimulation.Strategies;
 
 namespace DiscreteSimulation.Simulations {
-    class Warehouse(int replicationStock) : SimulationCore(replicationStock) {
-        private Strategy strategy = new StrategyA();
+    public class Warehouse(int replicationStock) : SimulationCore(replicationStock) {
+        public Strategy? Strategy { get; set; } = null;
+        private Action<int, double>? callback;
+
+        public void SetReplicationCallback(Action<int, double> callback) {
+            this.callback = callback;
+        }
 
         public override void AfterSimulation() {
 
         }
 
         public override void AfterSimulationRun() {
-            Console.WriteLine("\n" + Math.Round(strategy.TotalCost / replicationStock, 2));
+
         }
 
         public override void BeforeSimulation() {
@@ -21,8 +26,16 @@ namespace DiscreteSimulation.Simulations {
         }
 
         public override void Experiment() {
-            strategy.RunStrategy();
-            Console.WriteLine(Math.Round(strategy.TotalCost / currentReplication, 2));
+            if (Strategy != null) {
+                Strategy.RunStrategy();
+
+                if (currentReplication < replicationStock * 0.01) return;
+
+                if (currentReplication % 1000 == 0) {
+                    double averageCost = Strategy.TotalCost / (currentReplication + 1);
+                    callback?.Invoke(currentReplication, averageCost);
+                }
+            }
         }
     }
 }

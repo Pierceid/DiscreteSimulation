@@ -1,83 +1,101 @@
 ﻿using DiscreteSimulation.Simulations;
-using OxyPlot;
+using DiscreteSimulation.Strategies;
 using OxyPlot.Axes;
 using OxyPlot.Series;
-using System.Windows;
+using OxyPlot.Wpf;
+using OxyPlot;
 using System.Windows.Controls;
+using System.Windows;
 
 namespace DiscreteSimulation {
     public partial class MainWindow : Window {
-        private BuffonNeedle buffon;
+        private Warehouse warehouse;
         private PlotModel model;
         private LineSeries series;
         private LinearAxis xAxis;
         private LinearAxis yAxis;
         private bool isRunning;
-        private int updateInterval = 1000; // Update the plot every 100 replications
+        private Thread? simulationThread;
+
+        private Strategy[] strategies = [
+            new StrategyA(),
+            new StrategyB(),
+            new StrategyC(),
+            new StrategyD(),
+        ];
 
         public MainWindow() {
             InitializeComponent();
 
-            buffon = new BuffonNeedle(100_000); // Large replication count
+            warehouse = new Warehouse(1_000_000);
+            warehouse.SetReplicationCallback(OnReplicationCompleted);
 
-            // Initialize OxyPlot model
-            model = new PlotModel { Title = "Buffon's Needle Experiment" };
+            model = new PlotModel { Title = "Total Cost Over Time" };
 
-            // Dynamic X-Axis (Replications)
             xAxis = new LinearAxis { Position = AxisPosition.Bottom, Title = "Replications", Minimum = 0, Maximum = 1000 };
             model.Axes.Add(xAxis);
 
-            // Dynamic Y-Axis (Pi estimate)
-            yAxis = new LinearAxis { Position = AxisPosition.Left, Title = "Estimated π", Minimum = 2.5, Maximum = 3.5 };
+            yAxis = new LinearAxis { Position = AxisPosition.Left, Title = "Average Cost", Minimum = 0, Maximum = 1000 };
             model.Axes.Add(yAxis);
 
-            // Line series for the plot
-            series = new LineSeries { Title = "Estimated π", MarkerType = MarkerType.None };
+            series = new LineSeries { Title = "Average Cost", MarkerType = MarkerType.None };
             model.Series.Add(series);
 
             plotView.Model = model;
+
             isRunning = false;
+        }
+
+        private void OnReplicationCompleted(int replication, double cost) {
+            Dispatcher.Invoke((Delegate)(() => UpdatePlot(replication, cost)));
+        }
+
+        private void UpdatePlot(int replication, double cost) {
+            series.Points.Add(new DataPoint(replication, cost));
+
+            xAxis.Maximum = Math.Max(replication, xAxis.Maximum);
+
+            yAxis.Minimum = cost * 0.99;
+            yAxis.Maximum = cost * 1.01;
+
+            model.InvalidatePlot(true);
         }
 
         private void StartSimulation() {
-            if (isRunning) return;
+            if (isRunning || warehouse.Strategy == null) return;
 
             isRunning = true;
+            series.Points.Clear();
+            model.InvalidatePlot(true);
 
-            // Start the simulation with a callback to update the plot
-            //buffon.RunSimulation((replication, estimatedPi) => {
-            //    Dispatcher.Invoke(() => {
-            //        UpdatePlot(replication, estimatedPi);
-            //    });
-            //});
+            simulationThread = new Thread(() => {
+                warehouse.RunSimulation();
+                isRunning = false;
+            });
+
+            simulationThread.Start();
         }
 
         private void StopSimulation() {
-            // Ideally, you would cancel the simulation here
             isRunning = false;
-        }
-
-        private void UpdatePlot(long replications, double estimatedPi) {
-            // Only update the plot after every `updateInterval` replications
-            if (replications % updateInterval != 0) return;
-
-            // Add a new point to the series for the current replication
-            series.Points.Add(new DataPoint(replications, estimatedPi));
-
-            // Dynamically adjust axes based on new data points
-            xAxis.Maximum = Math.Max(replications, xAxis.Maximum);
-            yAxis.Minimum = series.Points.Min(p => p.Y) - 0.1;
-            yAxis.Maximum = series.Points.Max(p => p.Y) + 0.1;
-
-            // Refresh the plot view
-            model.InvalidatePlot(true);
+            warehouse.Stop();
+            simulationThread?.Join();
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e) {
             if (sender is Button button) {
-                if (button == btn1 && !isRunning) {  // Start simulation
+                if (button == btnStart) {
                     StartSimulation();
-                } else if (button == btn2) { // Stop simulation
+                } else if (button == btnStop) {
+                    StopSimulation();
+                }
+            }
+        }
+
+        private void SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (sender is ComboBox comboBox) {
+                if (comboBox == cbStrategies && !isRunning) {
+                    warehouse.Strategy = strategies[comboBox.SelectedIndex];
                     StopSimulation();
                 }
             }

@@ -12,7 +12,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="6*"/>
         </Grid.RowDefinitions>
-        
+
         <GroupBox Grid.Row="0" Height="60" VerticalAlignment="Top">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -23,8 +23,15 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- Buttons in each column -->
-                <Button x:Name="btn1" Grid.Column="0" Content="Button 1" Margin="30,5" Click="ButtonClick"/>
-                <Button x:Name="btn2" Grid.Column="1" Content="Button 2" Margin="30,5" Click="ButtonClick"/>
+                <Button x:Name="btnStart" Grid.Column="0" Content="Button 1" Margin="36,8" Click="ButtonClick"/>
+                <Button x:Name="btnStop" Grid.Column="1" Content="Button 2" Margin="36,8" Click="ButtonClick"/>
+                <ComboBox x:Name="cbStrategies" Grid.Column="2" Margin="36,16" SelectionChanged="SelectionChanged">
+                    <ComboBoxItem x:Name="StartegyA" Content="Startegy A" />
+                    <ComboBoxItem x:Name="StartegyB" Content="Startegy B" />
+                    <ComboBoxItem x:Name="StartegyC" Content="Startegy C" />
+                    <ComboBoxItem x:Name="StartegyD" Content="Startegy D" />
+                    <ComboBoxItem x:Name="StartegyE" Content="Startegy E" />
+                </ComboBox>
             </Grid>
         </GroupBox>
 
