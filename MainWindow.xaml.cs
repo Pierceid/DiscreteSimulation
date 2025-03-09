@@ -11,7 +11,8 @@ namespace DiscreteSimulation {
         public MainWindow() {
             InitializeComponent();
 
-            facade = new(plotView);
+            facade = new();
+            facade.InitGraph(plotView);
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e) {
@@ -25,10 +26,19 @@ namespace DiscreteSimulation {
             }
         }
 
-        private void SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            if (sender is ComboBox comboBox && comboBox == cbStrategies) {
-                UpdateStrategy();
-                UpdateUI();
+        private void ComboBoxSelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (sender is ComboBox comboBox) {
+                if (comboBox == cbStrategies) {
+                    UpdateUI();
+                }
+            }
+        }
+
+        private void TextBoxLostFocus(object sender, RoutedEventArgs e) {
+            if (sender is TextBox textBox) {
+                if (textBox == txtReplications) {
+                    UpdateWarehouse();
+                }
             }
         }
 
@@ -62,6 +72,12 @@ namespace DiscreteSimulation {
                 default:
                     break;
             }
+        }
+
+        private void UpdateWarehouse() {
+            if (!int.TryParse(txtReplications.Text, out int replications)) replications = 0;
+
+            facade.InitWarehouse(replications);
         }
 
         private void UpdateUI() {

@@ -4,14 +4,14 @@ using OxyPlot;
 using OxyPlot.Wpf;
 
 namespace DiscreteSimulation.Presentation {
-    public class Graph {
+    public class LineGraph {
         private PlotModel model;
         private LineSeries series;
         private LinearAxis xAxis;
         private LinearAxis yAxis;
         private PlotView plotView;
 
-        public Graph(string modelTitle, string xAxisTitle, string yAxisTitle, string seriesTitle, PlotView plotView) {
+        public LineGraph(string modelTitle, string xAxisTitle, string yAxisTitle, string seriesTitle, PlotView plotView) {
             model = new PlotModel { Title = modelTitle };
 
             xAxis = new LinearAxis { Position = AxisPosition.Bottom, Title = xAxisTitle, Minimum = 0, Maximum = 1000 };

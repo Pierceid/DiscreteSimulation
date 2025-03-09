@@ -4,28 +4,20 @@ using OxyPlot.Wpf;
 
 namespace DiscreteSimulation.Presentation {
     public class Facade {
-        private Warehouse warehouse;
-        private Graph graph;
+        private Warehouse? warehouse;
+        private LineGraph? graph;
         private Thread? simulationThread;
         private bool isRunning;
-        private const int REPLICATION_STOCK = 1_000_000;
 
-        public Facade(PlotView plotView) {
-            warehouse = new(REPLICATION_STOCK) { Callback = OnReplicationCompleted };
-
-            graph = new(
-                modelTitle: "Total Cost Over Time",
-                xAxisTitle: "Replications",
-                yAxisTitle: "Average Cost",
-                seriesTitle: "Average Cost",
-                plotView: plotView
-            );
-
+        public Facade() {
+            warehouse = null;
+            graph = null;
+            simulationThread = null;
             isRunning = false;
         }
 
         public void StartSimulation() {
-            if (warehouse.Strategy == null || isRunning) return;
+            if (warehouse == null || warehouse.Strategy == null || graph == null || isRunning) return;
 
             isRunning = true;
             graph.RefreshGraph();
@@ -35,6 +27,8 @@ namespace DiscreteSimulation.Presentation {
         }
 
         public void StopSimulation() {
+            if (warehouse == null) return;
+
             if (isRunning) {
                 warehouse.Stop();
                 isRunning = false;
@@ -45,6 +39,8 @@ namespace DiscreteSimulation.Presentation {
         }
 
         public void SetStrategy(Strategy strategy) {
+            if (warehouse == null || graph == null) return;
+
             if (isRunning) {
                 StopSimulation();
             }
@@ -53,7 +49,23 @@ namespace DiscreteSimulation.Presentation {
             graph.RefreshGraph();
         }
 
+        public void InitGraph(PlotView plotView) {
+            graph = new(
+                modelTitle: "Total Cost Over Time",
+                xAxisTitle: "Replications",
+                yAxisTitle: "Average Cost",
+                seriesTitle: "Average Cost",
+                plotView: plotView
+            );
+        }
+
+        public void InitWarehouse(int replications) {
+            warehouse = new(replications) { Callback = OnReplicationCompleted };
+        }
+
         private void OnReplicationCompleted(int replication, double cost) {
+            if (graph == null) return;
+
             graph.UpdatePlot(replication, cost);
         }
     }
