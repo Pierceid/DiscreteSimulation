@@ -47,7 +47,17 @@ namespace DiscreteSimulation {
                     facade.SetStrategy(new StrategyD());
                     break;
                 case 4:
-                    facade.SetStrategy(Utility.ParseStrategyX(txtMufflers.Text, txtBrakes.Text, txtLights.Text, chkSupplier1.IsChecked, chkSupplier2.IsChecked));
+                    facade.SetStrategy(Utility.ParseStrategyX(
+                        txtMufflers.Text,
+                        txtBrakes.Text,
+                        txtLights.Text,
+                        chkSupplier1.IsChecked,
+                        chkSupplier2.IsChecked,
+                        (int)sldrSupplier1Period.Value,
+                        (int)sldrSupplier2Period.Value,
+                        txtSupplier1Offset.Text,
+                        txtSupplier2Offset.Text
+                    ));
                     break;
                 default:
                     break;
