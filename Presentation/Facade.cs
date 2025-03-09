@@ -51,10 +51,10 @@ namespace DiscreteSimulation.Presentation {
 
         public void InitGraph(PlotView plotView) {
             graph = new(
-                modelTitle: "Total Cost Over Time",
+                modelTitle: "Costs Over Time",
                 xAxisTitle: "Replications",
-                yAxisTitle: "Average Cost",
-                seriesTitle: "Average Cost",
+                yAxisTitle: "Costs",
+                seriesTitle: "Costs",
                 plotView: plotView
             );
         }
