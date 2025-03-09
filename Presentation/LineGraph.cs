@@ -7,9 +7,9 @@ using OxyPlot.Wpf;
 namespace DiscreteSimulation.Presentation {
     public class LineGraph {
         private PlotModel model;
-        private LineSeries series;
         private LinearAxis xAxis;
         private LinearAxis yAxis;
+        private LineSeries series;
         private TextAnnotation valueAnnotation;
         private PlotView plotView;
 

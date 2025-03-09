@@ -4,14 +4,14 @@ using DiscreteSimulation.Utilities;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DiscreteSimulation {
+namespace DiscreteSimulation.Windows {
     public partial class MainWindow : Window {
         private Facade facade;
 
         public MainWindow() {
             InitializeComponent();
 
-            facade = new();
+            facade = new(this);
             facade.InitGraph(plotView);
         }
 
@@ -22,6 +22,8 @@ namespace DiscreteSimulation {
                     facade.StartSimulation();
                 } else if (button == btnStop) {
                     facade.StopSimulation();
+                } else if (button == btnPrint) {
+                    facade.PrintReplication();
                 }
             }
         }

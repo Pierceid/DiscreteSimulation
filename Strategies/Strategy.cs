@@ -9,7 +9,7 @@ namespace DiscreteSimulation.Strategies {
         protected UniformD brakeDemand;
         protected EmpiricD lightDemand;
 
-        // Supplier Lead-Time Distributions
+        // Supplier Distributions
         protected UniformC supplier1Initial;
         protected UniformC supplier1Adjusted;
         protected EmpiricC supplier2Initial;
@@ -23,9 +23,6 @@ namespace DiscreteSimulation.Strategies {
         protected int brakeStock = 0;
         protected int lightStock = 0;
 
-        // Total Cost
-        public double TotalCost { get; private set; } = 0.0;
-
         // Constants
         protected const int MUFFLER_SUPPLY = 100;
         protected const int BRAKE_SUPPLY = 200;
@@ -37,6 +34,10 @@ namespace DiscreteSimulation.Strategies {
         protected const double BRAKE_UNIT_COST = 0.3;
         protected const double LIGHT_UNIT_COST = 0.25;
         protected const double SHORTAGE_PENALTY = 0.3;
+
+        // Results
+        public double TotalCost { get; private set; } = 0.0;
+        public double[] DailyCosts { get; private set; } = new double[TOTAL_WEEKS * 7];
 
         // Static Data for Empirical Distributions
         private static readonly List<EmpiricData<int>> LightDemandSamples =
@@ -80,6 +81,7 @@ namespace DiscreteSimulation.Strategies {
             mufflerStock = 0;
             brakeStock = 0;
             lightStock = 0;
+            DailyCosts = new double[TOTAL_WEEKS * 7];
         }
 
         protected void RestockComponents() {
@@ -88,18 +90,21 @@ namespace DiscreteSimulation.Strategies {
             lightStock += LIGHT_SUPPLY;
         }
 
-        private void ComputeCosts() {
-            TotalCost += 4 * (mufflerStock * MUFFLER_UNIT_COST + brakeStock * BRAKE_UNIT_COST + lightStock * LIGHT_UNIT_COST);
+        private void ComputeCosts(int day) {
+            if (day % 7 == 4) {
+                mufflerStock -= mufflerDemand.Next();
+                brakeStock -= brakeDemand.Next();
+                lightStock -= lightDemand.Next();
 
-            mufflerStock -= mufflerDemand.Next();
-            brakeStock -= brakeDemand.Next();
-            lightStock -= lightDemand.Next();
+                ApplyShortagePenalty(ref mufflerStock);
+                ApplyShortagePenalty(ref brakeStock);
+                ApplyShortagePenalty(ref lightStock);
+            }
 
-            ApplyShortagePenalty(ref mufflerStock);
-            ApplyShortagePenalty(ref brakeStock);
-            ApplyShortagePenalty(ref lightStock);
+            double dailyCost = mufflerStock * MUFFLER_UNIT_COST + brakeStock * BRAKE_UNIT_COST + lightStock * LIGHT_UNIT_COST;
 
-            TotalCost += 3 * (mufflerStock * MUFFLER_UNIT_COST + brakeStock * BRAKE_UNIT_COST + lightStock * LIGHT_UNIT_COST);
+            TotalCost += dailyCost;
+            DailyCosts[day] = TotalCost;
         }
 
         private void ApplyShortagePenalty(ref int stock) {
@@ -114,7 +119,10 @@ namespace DiscreteSimulation.Strategies {
 
             for (int week = 0; week < TOTAL_WEEKS; week++) {
                 DetermineSupplier(week);
-                ComputeCosts();
+
+                for (int day = 0; day < 7; day++) {
+                    ComputeCosts(week * 7 + day);
+                }
             }
         }
 
