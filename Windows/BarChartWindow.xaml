@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:DiscreteSimulation.Windows"
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
-        Title="Experiment" Height="400" Width="600" WindowStartupLocation="CenterOwner">
+        Title="Experiment" Height="500" Width="750" WindowStartupLocation="CenterOwner">
     <Grid>
-        <oxy:PlotView x:Name="plotView" />
+        <oxy:PlotView x:Name="plotView"/>
     </Grid>
 </Window>

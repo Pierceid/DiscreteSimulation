@@ -1,15 +1,15 @@
 ﻿namespace DiscreteSimulation.Simulations {
     public abstract class SimulationCore {
         protected Thread? thread;
-        protected int replicationStock;
-        protected int currentReplication;
         protected bool isRunning;
+        public int CurrentReplication { get; private set; }
+        public int ReplicationStock { get; private set; }
 
         protected SimulationCore(int replicationStock) {
             this.thread = null;
-            this.replicationStock = replicationStock;
-            this.currentReplication = 0;
             this.isRunning = false;
+            this.CurrentReplication = 0;
+            this.ReplicationStock = replicationStock;
         }
 
         public void Start() {
@@ -29,7 +29,7 @@
         private void Simulate() {
             BeforeSimulationRun();
 
-            for (this.currentReplication = 0; this.currentReplication < this.replicationStock && this.isRunning; this.currentReplication++) {
+            for (this.CurrentReplication = 0; this.CurrentReplication < this.ReplicationStock && this.isRunning; this.CurrentReplication++) {
                 BeforeSimulation();
                 Experiment();
                 AfterSimulation();

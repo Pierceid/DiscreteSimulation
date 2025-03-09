@@ -26,7 +26,7 @@
         }
 
         public override void AfterSimulationRun() {
-            double estimatedPi = (2.0 * this.needleLength * this.replicationStock) / (this.distance * this.intersectionCount);
+            double estimatedPi = (2.0 * this.needleLength * this.ReplicationStock) / (this.distance * this.intersectionCount);
             Console.WriteLine($"\nEstimated PI: {estimatedPi}\n");
         }
     }

@@ -37,6 +37,7 @@ namespace DiscreteSimulation.Strategies {
 
         // Results
         public double TotalCost { get; private set; } = 0.0;
+        public double OverallCost { get; private set; } = 0.0;
         public double[] DailyCosts { get; private set; } = new double[TOTAL_WEEKS * 7];
 
         // Static Data for Empirical Distributions
@@ -81,6 +82,7 @@ namespace DiscreteSimulation.Strategies {
             mufflerStock = 0;
             brakeStock = 0;
             lightStock = 0;
+            TotalCost = 0;
             DailyCosts = new double[TOTAL_WEEKS * 7];
         }
 
@@ -104,12 +106,14 @@ namespace DiscreteSimulation.Strategies {
             double dailyCost = mufflerStock * MUFFLER_UNIT_COST + brakeStock * BRAKE_UNIT_COST + lightStock * LIGHT_UNIT_COST;
 
             TotalCost += dailyCost;
+            OverallCost += dailyCost;
             DailyCosts[day] = TotalCost;
         }
 
         private void ApplyShortagePenalty(ref int stock) {
             if (stock < 0) {
                 TotalCost += Math.Abs(stock) * SHORTAGE_PENALTY;
+                OverallCost += Math.Abs(stock) * SHORTAGE_PENALTY;
                 stock = 0;
             }
         }

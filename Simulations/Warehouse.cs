@@ -25,11 +25,11 @@ namespace DiscreteSimulation.Simulations {
             if (Strategy != null) {
                 Strategy.RunStrategy();
 
-                if (currentReplication < replicationStock * 0.01) return;
+                if (CurrentReplication < ReplicationStock * 0.01) return;
 
-                if (currentReplication % 1000 == 0) {
-                    double averageCost = Strategy.TotalCost / (currentReplication + 1);
-                    Callback?.Invoke(currentReplication, averageCost);
+                if (CurrentReplication % 1000 == 0) {
+                    double averageCost = Math.Round(Strategy.OverallCost / (CurrentReplication + 1));
+                    Callback?.Invoke(CurrentReplication, averageCost);
                 }
             }
         }

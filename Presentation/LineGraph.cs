@@ -22,7 +22,7 @@ namespace DiscreteSimulation.Presentation {
             yAxis = new LinearAxis { Position = AxisPosition.Left, Title = yAxisTitle, Minimum = 0, Maximum = 1000 };
             model.Axes.Add(yAxis);
 
-            series = new LineSeries { Title = seriesTitle, Color = OxyColors.Blue };
+            series = new LineSeries { Title = seriesTitle, Color = OxyColors.Green };
             model.Series.Add(series);
 
             valueAnnotation = new TextAnnotation {
@@ -30,9 +30,9 @@ namespace DiscreteSimulation.Presentation {
                 StrokeThickness = 0,
                 TextColor = OxyColors.Red,
                 FontSize = 16,
-                FontWeight = OxyPlot.FontWeights.Bold,
-                TextHorizontalAlignment = OxyPlot.HorizontalAlignment.Right,
-                TextVerticalAlignment = OxyPlot.VerticalAlignment.Top,
+                FontWeight = FontWeights.Bold,
+                TextHorizontalAlignment = HorizontalAlignment.Right,
+                TextVerticalAlignment = VerticalAlignment.Top,
                 TextPosition = new DataPoint(0, 0)
             };
             model.Annotations.Add(valueAnnotation);
@@ -48,8 +48,8 @@ namespace DiscreteSimulation.Presentation {
             yAxis.Minimum = yValue * 0.995;
             yAxis.Maximum = yValue * 1.005;
 
-            valueAnnotation.Text = $"{yValue:F2}";
-            valueAnnotation.TextPosition = new DataPoint(xValue, yValue);
+            valueAnnotation.Text = $"{yValue:F0}";
+            valueAnnotation.TextPosition = new DataPoint(xAxis.Maximum * 0.99, yAxis.Maximum);
 
             model.InvalidatePlot(true);
         }

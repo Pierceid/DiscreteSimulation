@@ -2,16 +2,17 @@
 using DiscreteSimulation.Strategies;
 using DiscreteSimulation.Windows;
 using OxyPlot.Wpf;
+using System.Windows;
 
 namespace DiscreteSimulation.Presentation {
     public class Facade {
-        private MainWindow? mainWindow;
+        private Window? mainWindow;
         private Warehouse? warehouse;
         private LineGraph? graph;
         private Thread? simulationThread;
         private bool isRunning;
 
-        public Facade(MainWindow? window) {
+        public Facade(Window? window) {
             mainWindow = window;
             warehouse = null;
             graph = null;
@@ -42,11 +43,12 @@ namespace DiscreteSimulation.Presentation {
         }
 
         public void PrintReplication() {
-            if (warehouse == null || warehouse.Strategy == null || mainWindow == null) return;
+            if (warehouse == null || warehouse.Strategy == null) return;
 
-            BarChartWindow barChartWindow = new(mainWindow, warehouse.Strategy.DailyCosts);
+            BarChartWindow barChartWindow = new(mainWindow, $"Costs Analysis ({warehouse.CurrentReplication})", warehouse.Strategy.DailyCosts);
             barChartWindow.Show();
         }
+
 
         public void SetStrategy(Strategy strategy) {
             if (warehouse == null || graph == null) return;

@@ -5,33 +5,39 @@ using OxyPlot.Wpf;
 
 namespace DiscreteSimulation.Presentation {
     public class BarChart {
-        private PlotModel model;
-        private BarSeries barSeries;
-        private PlotView plotView;
+        public BarChart(PlotView plotView, string title, double[] costs) {
+            var model = new PlotModel { Title = title };
 
-        public BarChart(string title, PlotView plotView) {
-            this.plotView = plotView;
-            model = new PlotModel { Title = title };
+            var columnSeries = new LinearBarSeries {
+                FillColor = OxyColors.SkyBlue,
+                StrokeColor = OxyColors.Black,
+                StrokeThickness = 1,
+                BarWidth = 10
+            };
 
-            var categoryAxis = new CategoryAxis { Position = AxisPosition.Bottom, Title = "Day" };
-            model.Axes.Add(categoryAxis);
-
-            var valueAxis = new LinearAxis { Position = AxisPosition.Left, Title = "Cost", Minimum = 0 };
-            model.Axes.Add(valueAxis);
-
-            barSeries = new BarSeries { Title = "Daily Costs" };
-            model.Series.Add(barSeries);
-
-            this.plotView.Model = model;
-        }
-
-        public void UpdateChart(double[] costs) {
-            barSeries.Items.Clear();
             for (int i = 0; i < costs.Length; i++) {
-                barSeries.Items.Add(new BarItem(costs[i]));
-                ((CategoryAxis)model.Axes[0]).Labels.Add($"D{i + 1}");
+                columnSeries.Points.Add(new DataPoint(i, costs[i]));
             }
-            model.InvalidatePlot(true);
+
+            model.Series.Add(columnSeries);
+
+            model.Axes.Add(new CategoryAxis {
+                Position = AxisPosition.Bottom,
+                Title = "Days",
+                MajorStep = 7,
+                MinimumPadding = 1,
+                AbsoluteMinimum = 0
+            });
+
+            model.Axes.Add(new LinearAxis {
+                Position = AxisPosition.Left,
+                Title = "Costs",
+                MajorStep = Math.Round(costs[^1] * 0.2),
+                MinimumPadding = 1,
+                AbsoluteMinimum = 0
+            });
+
+            plotView.Model = model;
         }
     }
 }

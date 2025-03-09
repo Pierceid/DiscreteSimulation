@@ -3,14 +3,12 @@ using System.Windows;
 
 namespace DiscreteSimulation.Windows {
     public partial class BarChartWindow : Window {
-        private BarChart barChart;
-
-        public BarChartWindow(Window mainWindow, double[] costs) {
+        public BarChartWindow(Window? window, string title, double[] costs) {
             InitializeComponent();
-            Owner = mainWindow;
 
-            barChart = new BarChart("Cost Analysis", plotView);
-            barChart.UpdateChart(costs);
+            Owner = window;
+
+            _ = new BarChart(plotView, title, costs);
         }
     }
 }
