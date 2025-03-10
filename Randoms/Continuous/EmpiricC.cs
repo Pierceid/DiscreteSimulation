@@ -1,11 +1,11 @@
 ﻿using DiscreteSimulation.Structures;
 
 namespace DiscreteSimulation.Randoms.Continuous {
-    public class EmpiricC : EmpiricDistribution<double> {
+    public class EmpiricC : GeneralRandom<double> {
         private List<EmpiricData<double>> samples;
         private List<UniformC> generators;
 
-        public EmpiricC(List<EmpiricData<double>> samples) : base(samples) {
+        public EmpiricC(List<EmpiricData<double>> samples) {
             this.samples = new(samples.Count);
             this.generators = new(samples.Count);
 
@@ -20,10 +20,10 @@ namespace DiscreteSimulation.Randoms.Continuous {
         }
 
         public override double Next() {
-            double binProb = Generator.NextDouble();
+            double rng = Generator.NextDouble();
 
             for (int i = 0; i < this.samples.Count; i++) {
-                if (binProb < this.samples[i].Probability) {
+                if (rng < this.samples[i].Probability) {
                     return this.generators[i].Next();
                 }
             }
