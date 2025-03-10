@@ -41,7 +41,7 @@ namespace DiscreteSimulation.Strategies {
         public double[] DailyCosts { get; private set; } = new double[TOTAL_WEEKS * 7];
 
         // Static Data for Empirical Distributions
-        private static readonly List<EmpiricData<int>> LightDemandSamples =
+        private static readonly EmpiricData<int>[] LightDemandSamples =
         [
             new(30, 60, 0.2),
             new(60, 100, 0.4),
@@ -49,7 +49,7 @@ namespace DiscreteSimulation.Strategies {
             new(140, 160, 0.1)
         ];
 
-        private static readonly List<EmpiricData<double>> Supplier2InitialSamples =
+        private static readonly EmpiricData<double>[] Supplier2InitialSamples =
         [
             new(0.05, 0.1, 0.4),
             new(0.1, 0.5, 0.3),
@@ -58,7 +58,7 @@ namespace DiscreteSimulation.Strategies {
             new(0.8, 0.95, 0.04)
         ];
 
-        private static readonly List<EmpiricData<double>> Supplier2AdjustedSamples =
+        private static readonly EmpiricData<double>[] Supplier2AdjustedSamples =
         [
             new(0.05, 0.1, 0.2),
             new(0.1, 0.5, 0.4),
@@ -92,29 +92,48 @@ namespace DiscreteSimulation.Strategies {
             lightStock += LIGHT_SUPPLY;
         }
 
-        private void ComputeCosts(int day) {
-            if (day % 7 == 4) {
-                mufflerStock -= mufflerDemand.Next();
-                brakeStock -= brakeDemand.Next();
-                lightStock -= lightDemand.Next();
+        private void ComputeCosts(int week) {
+            double dailyCostBefore = mufflerStock * MUFFLER_UNIT_COST + brakeStock * BRAKE_UNIT_COST + lightStock * LIGHT_UNIT_COST;
 
-                ApplyShortagePenalty(ref mufflerStock);
-                ApplyShortagePenalty(ref brakeStock);
-                ApplyShortagePenalty(ref lightStock);
+            TotalCost += 4 * dailyCostBefore;
+            OverallCost += 4 * dailyCostBefore;
+
+            for (int day = 0; day < 4; day++) {
+                DailyCosts[week * 7 + day] = TotalCost - (3 - day) * dailyCostBefore;
             }
 
-            double dailyCost = mufflerStock * MUFFLER_UNIT_COST + brakeStock * BRAKE_UNIT_COST + lightStock * LIGHT_UNIT_COST;
+            mufflerStock -= mufflerDemand.Next();
+            brakeStock -= brakeDemand.Next();
+            lightStock -= lightDemand.Next();
 
-            TotalCost += dailyCost;
-            OverallCost += dailyCost;
-            DailyCosts[day] = TotalCost;
-        }
+            if (mufflerStock < 0) {
+                double penalty = Math.Abs(mufflerStock) * SHORTAGE_PENALTY;
+                TotalCost += penalty;
+                OverallCost += penalty;
+                mufflerStock = 0;
+            }
 
-        private void ApplyShortagePenalty(ref int stock) {
-            if (stock < 0) {
-                TotalCost += Math.Abs(stock) * SHORTAGE_PENALTY;
-                OverallCost += Math.Abs(stock) * SHORTAGE_PENALTY;
-                stock = 0;
+            if (brakeStock < 0) {
+                double penalty = Math.Abs(brakeStock) * SHORTAGE_PENALTY;
+                TotalCost += penalty;
+                OverallCost += penalty;
+                brakeStock = 0;
+            }
+
+            if (lightStock < 0) {
+                double penalty = Math.Abs(lightStock) * SHORTAGE_PENALTY;
+                TotalCost += penalty;
+                OverallCost += penalty;
+                lightStock = 0;
+            }
+
+            double dailyCostAfter = mufflerStock * MUFFLER_UNIT_COST + brakeStock * BRAKE_UNIT_COST + lightStock * LIGHT_UNIT_COST;
+
+            TotalCost += 3 * dailyCostAfter;
+            OverallCost += 3 * dailyCostAfter;
+
+            for (int day = 4; day < 7; day++) {
+                DailyCosts[week * 7 + day] = TotalCost - (6 - day) * dailyCostAfter;
             }
         }
 
@@ -123,10 +142,7 @@ namespace DiscreteSimulation.Strategies {
 
             for (int week = 0; week < TOTAL_WEEKS; week++) {
                 DetermineSupplier(week);
-
-                for (int day = 0; day < 7; day++) {
-                    ComputeCosts(week * 7 + day);
-                }
+                ComputeCosts(week);
             }
         }
 
