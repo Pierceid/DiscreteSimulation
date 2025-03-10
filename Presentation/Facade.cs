@@ -3,6 +3,7 @@ using DiscreteSimulation.Strategies;
 using DiscreteSimulation.Windows;
 using OxyPlot.Wpf;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace DiscreteSimulation.Presentation {
     public class Facade {
@@ -26,20 +27,18 @@ namespace DiscreteSimulation.Presentation {
             isRunning = true;
             graph.RefreshGraph();
 
-            simulationThread = new(warehouse.RunSimulation);
+            simulationThread = new(warehouse.RunSimulation) { IsBackground = true };
             simulationThread.Start();
         }
 
         public void StopSimulation() {
-            if (warehouse == null) return;
+            if (warehouse == null || !isRunning) return;
 
-            if (isRunning) {
-                warehouse.Stop();
-                isRunning = false;
+            warehouse.Stop();
+            isRunning = false;
 
-                simulationThread?.Join();
-                simulationThread = null;
-            }
+            simulationThread?.Join();
+            simulationThread = null;
         }
 
         public void PrintReplication() {
@@ -48,7 +47,6 @@ namespace DiscreteSimulation.Presentation {
             BarChartWindow barChartWindow = new(mainWindow, $"Costs Analysis ({warehouse.CurrentReplication})", warehouse.Strategy.DailyCosts);
             barChartWindow.Show();
         }
-
 
         public void SetStrategy(Strategy strategy) {
             if (warehouse == null || graph == null) return;
@@ -62,6 +60,10 @@ namespace DiscreteSimulation.Presentation {
         }
 
         public void InitGraph(PlotView plotView) {
+            if (isRunning) {
+                StopSimulation();
+            }
+
             graph = new(
                 modelTitle: "Costs Over Time",
                 xAxisTitle: "Replications",
@@ -72,13 +74,21 @@ namespace DiscreteSimulation.Presentation {
         }
 
         public void InitWarehouse(int replications) {
-            warehouse = new(replications) { Callback = OnReplicationCompleted };
+            if (isRunning) {
+                StopSimulation();
+            }
+
+            warehouse = new Warehouse(replications) { Callback = OnReplicationCompleted };
         }
 
         private void OnReplicationCompleted(int replication, double cost) {
-            if (graph == null) return;
+            if (graph == null || mainWindow == null || !isRunning) return;
 
-            graph.UpdatePlot(replication, cost);
+            mainWindow.Dispatcher.Invoke(() => {
+                if (isRunning) {
+                    graph.UpdatePlot(replication, cost);
+                }
+            }, DispatcherPriority.Input);
         }
     }
 }

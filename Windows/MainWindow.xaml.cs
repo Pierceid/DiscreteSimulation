@@ -20,8 +20,10 @@ namespace DiscreteSimulation.Windows {
                 if (button == btnStart) {
                     UpdateStrategy();
                     facade.StartSimulation();
+                    btnStart.IsEnabled = false;
                 } else if (button == btnStop) {
                     facade.StopSimulation();
+                    btnStart.IsEnabled = true;
                 } else if (button == btnPrint) {
                     facade.PrintReplication();
                 }

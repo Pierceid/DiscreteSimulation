@@ -6,7 +6,12 @@ namespace DiscreteSimulation.Simulations {
         public Action<int, double>? Callback { get; set; } = null;
 
         public override void AfterSimulation() {
+            if (Strategy == null || CurrentReplication < ReplicationStock * 0.01) return;
 
+            if (ReplicationStock < 1000 || CurrentReplication % (ReplicationStock / 1000) == 0) {
+                double averageCost = Math.Round(Strategy.OverallCost / (CurrentReplication + 1));
+                Callback?.Invoke(CurrentReplication, averageCost);
+            }
         }
 
         public override void AfterSimulationRun() {
@@ -22,16 +27,7 @@ namespace DiscreteSimulation.Simulations {
         }
 
         public override void Experiment() {
-            if (Strategy != null) {
-                Strategy.RunStrategy();
-
-                if (CurrentReplication < ReplicationStock * 0.01) return;
-
-                if (CurrentReplication % 1000 == 0) {
-                    double averageCost = Math.Round(Strategy.OverallCost / (CurrentReplication + 1));
-                    Callback?.Invoke(CurrentReplication, averageCost);
-                }
-            }
+            Strategy?.RunStrategy();
         }
     }
 }

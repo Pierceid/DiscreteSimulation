@@ -1,21 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="DiscreteSimulation.Presentation.BarChart" Collapsed="true">
-    <Position X="15" Y="0.5" Width="1.5" />
+  <Class Name="DiscreteSimulation.Presentation.BarChart">
+    <Position X="7" Y="14" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Presentation\BarChart.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Presentation.Facade" Collapsed="true">
-    <Position X="15" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>BAQAAEAAAAIAAABEAAAAABEADAAAAAAAAAAAAAgAAAg=</HashCode>
-      <FileName>Presentation\Facade.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="DiscreteSimulation.Presentation.LineGraph" Collapsed="true">
-    <Position X="16.75" Y="1.5" Width="1.5" />
+  <Class Name="DiscreteSimulation.Presentation.LineGraph">
+    <Position X="10" Y="8" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
       <HashCode>AAAAAYAAEAAAAQAAAAAAAAAAAAQAAAAAAABAAAAICAA=</HashCode>
       <FileName>Presentation\LineGraph.cs</FileName>
@@ -61,15 +57,18 @@
       <FileName>Randoms\Discrete\UniformD.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Simulations.SimulationCore" Collapsed="true">
-    <Position X="15.75" Y="4.75" Width="1.5" />
+  <Class Name="DiscreteSimulation.Simulations.SimulationCore">
+    <Position X="4" Y="11.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
-      <HashCode>AAAIAAAAACAEAAFAAAABAAAEwAAAQEACIAAAAAAAAAA=</HashCode>
+      <HashCode>AAAIAAAAACAEAABAAAABAAAEwAAAQEACIAAAAAAAAAA=</HashCode>
       <FileName>Simulations\SimulationCore.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Simulations.Warehouse" Collapsed="true">
-    <Position X="13.25" Y="4.75" Width="1.5" />
+  <Class Name="DiscreteSimulation.Simulations.Warehouse">
+    <Position X="4" Y="8" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAEAAAAAAAAAAAEQAAAQAACAAAAABAAQAA=</HashCode>
       <FileName>Simulations\Warehouse.cs</FileName>
@@ -131,7 +130,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="DiscreteSimulation.Structures.GeneralRandom&lt;T&gt;">
-    <Position X="11" Y="2.75" Width="1.5" />
+    <Position X="13.25" Y="2.75" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
@@ -140,37 +139,40 @@
       <FileName>Structures\GeneralRandom.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Structures.Pair&lt;T, U&gt;" Collapsed="true">
-    <Position X="13.25" Y="2.5" Width="1.5" />
+  <Class Name="DiscreteSimulation.Structures.Pair&lt;T, U&gt;">
+    <Position X="11.75" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAQAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Structures\Pair.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Tests.EmpiricTests" Collapsed="true">
-    <Position X="13.25" Y="1.5" Width="1.5" />
+  <Class Name="DiscreteSimulation.Tests.EmpiricTests">
+    <Position X="12.75" Y="8" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAgAAAAAAAAAAAIAAAAAAAAAEAgAAAAAAAAAAAAAA=</HashCode>
       <FileName>Tests\EmpiricTests.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Utilities.Utility" Collapsed="true">
-    <Position X="15" Y="2.5" Width="1.5" />
+  <Class Name="DiscreteSimulation.Utilities.Utility">
+    <Position X="16.5" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Utilities\Utility.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Windows.BarChartWindow" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="16.75" Y="0.5" Width="1.5" />
+  <Class Name="DiscreteSimulation.Windows.BarChartWindow" BaseTypeListCollapsed="true">
+    <Position X="7" Y="12.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Windows\BarChartWindow.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="DiscreteSimulation.Windows.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="18.5" Y="1.5" Width="1.5" />
+  <Class Name="DiscreteSimulation.Windows.MainWindow" BaseTypeListCollapsed="true">
+    <Position X="10" Y="10.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
     <TypeIdentifier>
       <HashCode>EAEQAAAAACAACAAAAAAAAAAAAAAAAAAAAAAAAASAAAA=</HashCode>
       <FileName>Windows\MainWindow.xaml.cs</FileName>
@@ -182,6 +184,13 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="DiscreteSimulation.Presentation.Facade">
+    <Position X="7" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAQAAEAAAAIAAABEAAAAABEADAAAAAAAAAAAAAgAAAg=</HashCode>
+      <FileName>Presentation\Facade.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

@@ -33,7 +33,7 @@ namespace DiscreteSimulation.Presentation {
                 FontWeight = FontWeights.Bold,
                 TextHorizontalAlignment = HorizontalAlignment.Right,
                 TextVerticalAlignment = VerticalAlignment.Top,
-                TextPosition = new DataPoint(0, 0)
+                TextPosition =  new DataPoint(0, 0)
             };
             model.Annotations.Add(valueAnnotation);
 
@@ -45,8 +45,8 @@ namespace DiscreteSimulation.Presentation {
             series.Points.Add(new DataPoint(xValue, yValue));
 
             xAxis.Maximum = xValue;
-            yAxis.Minimum = yValue * 0.995;
-            yAxis.Maximum = yValue * 1.005;
+            yAxis.Minimum = yValue - (series.MaxY - series.MinY);
+            yAxis.Maximum = yValue + (series.MaxY - series.MinY);
 
             valueAnnotation.Text = $"{yValue:F0}";
             valueAnnotation.TextPosition = new DataPoint(xAxis.Maximum * 0.99, yAxis.Maximum);
