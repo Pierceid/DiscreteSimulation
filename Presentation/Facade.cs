@@ -41,7 +41,7 @@ namespace DiscreteSimulation.Presentation {
             simulationThread = null;
         }
 
-        public void PrintReplication() {
+        public void AnalyzeReplication() {
             if (warehouse == null || warehouse.Strategy == null) return;
 
             BarChartWindow barChartWindow = new(mainWindow, $"Costs Analysis ({warehouse.CurrentReplication})", warehouse.Strategy.DailyCosts);

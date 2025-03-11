@@ -24,8 +24,8 @@ namespace DiscreteSimulation.Windows {
                 } else if (button == btnStop) {
                     facade.StopSimulation();
                     btnStart.IsEnabled = true;
-                } else if (button == btnPrint) {
-                    facade.PrintReplication();
+                } else if (button == btnAnalyze) {
+                    facade.AnalyzeReplication();
                 }
             }
         }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:DiscreteSimulation.Windows"
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
-        Title="Discrete Simulation" Height="600" Width="900">
+        Title="Discrete Simulation" Height="600" Width="900" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -29,7 +29,7 @@
                     <!-- Buttons and ComboBox -->
                     <Button x:Name="btnStart" Grid.Row="0" Content="Start" Height="24" Click="ButtonClick" Margin="2"/>
                     <Button x:Name="btnStop" Grid.Row="1" Content="Stop" Height="24" Click="ButtonClick" Margin="2"/>
-                    <Button x:Name="btnPrint" Grid.Row="2" Content="Print" Height="24" Click="ButtonClick" Margin="2"/>
+                    <Button x:Name="btnAnalyze" Grid.Row="2" Content="Analyze" Height="24" Click="ButtonClick" Margin="2"/>
                     <ComboBox x:Name="cbStrategies" Grid.Row="3" Height="24" SelectionChanged="ComboBoxSelectionChanged" Margin="2">
                         <ComboBoxItem x:Name="StrategyA" Content="Strategy A"/>
                         <ComboBoxItem x:Name="StrategyB" Content="Strategy B"/>
