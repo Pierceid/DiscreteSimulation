@@ -45,8 +45,8 @@ namespace DiscreteSimulation.Presentation {
             series.Points.Add(new DataPoint(xValue, yValue));
 
             xAxis.Maximum = xValue;
-            yAxis.Minimum = yValue - (series.MaxY - series.MinY);
-            yAxis.Maximum = yValue + (series.MaxY - series.MinY);
+            yAxis.Minimum = series.MinY;
+            yAxis.Maximum = series.MaxY;
 
             valueAnnotation.Text = $"{yValue:F0}";
             valueAnnotation.TextPosition = new DataPoint(xAxis.Maximum * 0.99, yAxis.Maximum);

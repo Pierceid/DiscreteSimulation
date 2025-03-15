@@ -13,6 +13,8 @@ namespace DiscreteSimulation.Windows {
 
             facade = new(this);
             facade.InitGraph(plotView);
+
+            InitUI();
         }
 
         private void ButtonClick(object sender, RoutedEventArgs e) {
@@ -90,6 +92,14 @@ namespace DiscreteSimulation.Windows {
             } else {
                 gbStrategyXControls.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void InitUI() {
+            cbStrategies.SelectedIndex = 0;
+            txtReplications.Text = "1000000";
+
+            UpdateWarehouse();
+            UpdateStrategy();
         }
     }
 }
