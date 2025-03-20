@@ -1,10 +1,10 @@
-﻿using DiscreteSimulation.Presentation;
-using DiscreteSimulation.Strategies;
-using DiscreteSimulation.Utilities;
+﻿using MonteCarlo.Presentation;
+using MonteCarlo.Strategies;
+using MonteCarlo.Utilities;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace DiscreteSimulation.Windows {
+namespace MonteCarlo.Windows {
     public partial class MainWindow : Window {
         private Facade facade;
 

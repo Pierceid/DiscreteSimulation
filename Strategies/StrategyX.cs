@@ -1,4 +1,4 @@
-﻿namespace DiscreteSimulation.Strategies {
+﻿namespace MonteCarlo.Strategies {
     public class StrategyX : Strategy {
         private int mufflerSupply;
         private int brakeSupply;

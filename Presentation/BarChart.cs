@@ -3,7 +3,7 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.Wpf;
 
-namespace DiscreteSimulation.Presentation {
+namespace MonteCarlo.Presentation {
     public class BarChart {
         public BarChart(PlotView plotView, string title, double[] costs) {
             var model = new PlotModel { Title = title };

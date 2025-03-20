@@ -1,6 +1,6 @@
-﻿using DiscreteSimulation.Strategies;
+﻿using MonteCarlo.Strategies;
 
-namespace DiscreteSimulation.Utilities {
+namespace MonteCarlo.Utilities {
     public static class Utility {
         public static string FormatRange(object min, object max) {
             return $"<{min.ToString()?.Replace(',', '.')},{max.ToString()?.Replace(',', '.')})";

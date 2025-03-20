@@ -1,11 +1,11 @@
-﻿using DiscreteSimulation.Simulations;
-using DiscreteSimulation.Strategies;
-using DiscreteSimulation.Windows;
+﻿using MonteCarlo.Simulations;
+using MonteCarlo.Strategies;
+using MonteCarlo.Windows;
 using OxyPlot.Wpf;
 using System.Windows;
 using System.Windows.Threading;
 
-namespace DiscreteSimulation.Presentation {
+namespace MonteCarlo.Presentation {
     public class Facade {
         private Window? mainWindow;
         private Warehouse? warehouse;

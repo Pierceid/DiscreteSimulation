@@ -1,6 +1,6 @@
-﻿using DiscreteSimulation.Structures;
+﻿using MonteCarlo.Structures;
 
-namespace DiscreteSimulation.Randoms.Continuous {
+namespace MonteCarlo.Randoms.Continuous {
     public class UniformC : GeneralRandom<double> {
         private double min;
         private double max;

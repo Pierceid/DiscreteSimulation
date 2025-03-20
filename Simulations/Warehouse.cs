@@ -1,6 +1,6 @@
-﻿using DiscreteSimulation.Strategies;
+﻿using MonteCarlo.Strategies;
 
-namespace DiscreteSimulation.Simulations {
+namespace MonteCarlo.Simulations {
     public class Warehouse(int replicationStock) : SimulationCore(replicationStock) {
         public Strategy? Strategy { get; set; } = null;
         public Action<int, double>? Callback { get; set; } = null;

@@ -4,7 +4,7 @@ using OxyPlot.Axes;
 using OxyPlot.Series;
 using OxyPlot.Wpf;
 
-namespace DiscreteSimulation.Presentation {
+namespace MonteCarlo.Presentation {
     public class LineGraph {
         private PlotModel model;
         private LinearAxis xAxis;

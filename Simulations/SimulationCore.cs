@@ -1,4 +1,4 @@
-﻿namespace DiscreteSimulation.Simulations {
+﻿namespace MonteCarlo.Simulations {
     public abstract class SimulationCore {
         protected Thread? thread;
         protected bool isRunning;

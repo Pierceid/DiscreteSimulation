@@ -1,4 +1,4 @@
-﻿namespace DiscreteSimulation.Strategies {
+﻿namespace MonteCarlo.Strategies {
     public class StrategyC : Strategy {
         public override void DetermineSupplier(int week) {
             if (week % 2 == 0) {

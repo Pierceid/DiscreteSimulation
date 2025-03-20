@@ -1,4 +1,4 @@
-﻿namespace DiscreteSimulation.Strategies {
+﻿namespace MonteCarlo.Strategies {
     public class StrategyB : Strategy {
         public override void DetermineSupplier(int week) {
             if (week < SUPPLIER2_SWITCH) {

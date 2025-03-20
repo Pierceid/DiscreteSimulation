@@ -1,6 +1,6 @@
-﻿using DiscreteSimulation.Structures;
+﻿using MonteCarlo.Structures;
 
-namespace DiscreteSimulation.Randoms.Discrete {
+namespace MonteCarlo.Randoms.Discrete {
     public class UniformD : GeneralRandom<int> {
         private int min;
         private int max;

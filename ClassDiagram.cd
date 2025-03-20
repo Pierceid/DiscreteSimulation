@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="DiscreteSimulation.Presentation.BarChart">
+  <Class Name="MonteCarlo.Presentation.BarChart">
     <Position X="12" Y="8.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Presentation\BarChart.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Presentation.Facade">
+  <Class Name="MonteCarlo.Presentation.Facade">
     <Position X="6" Y="8.25" Width="1.75" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -17,7 +17,7 @@
       <FileName>Presentation\Facade.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Presentation.LineGraph">
+  <Class Name="MonteCarlo.Presentation.LineGraph">
     <Position X="9.25" Y="10" Width="1.75" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -27,7 +27,7 @@
       <FileName>Presentation\LineGraph.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Randoms.Continuous.EmpiricC">
+  <Class Name="MonteCarlo.Randoms.Continuous.EmpiricC">
     <Position X="6.5" Y="4" Width="1.75" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -37,7 +37,7 @@
       <FileName>Randoms\Continuous\EmpiricC.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Randoms.Continuous.UniformC">
+  <Class Name="MonteCarlo.Randoms.Continuous.UniformC">
     <Position X="6.5" Y="0.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -47,7 +47,7 @@
       <FileName>Randoms\Continuous\UniformC.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Randoms.Discrete.EmpiricD">
+  <Class Name="MonteCarlo.Randoms.Discrete.EmpiricD">
     <Position X="6.5" Y="5.75" Width="1.75" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -57,7 +57,7 @@
       <FileName>Randoms\Discrete\EmpiricD.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Randoms.Discrete.UniformD">
+  <Class Name="MonteCarlo.Randoms.Discrete.UniformD">
     <Position X="6.5" Y="2.25" Width="1.75" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -67,7 +67,7 @@
       <FileName>Randoms\Discrete\UniformD.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Simulations.SimulationCore">
+  <Class Name="MonteCarlo.Simulations.SimulationCore">
     <Position X="0.5" Y="7.75" Width="1.75" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -77,14 +77,14 @@
       <FileName>Simulations\SimulationCore.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Simulations.Warehouse">
+  <Class Name="MonteCarlo.Simulations.Warehouse">
     <Position X="3.25" Y="8.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAEAAAAAAAAAAAEQAAAQAACAAAAABAAQAA=</HashCode>
       <FileName>Simulations\Warehouse.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Strategies.Strategy">
+  <Class Name="MonteCarlo.Strategies.Strategy">
     <Position X="3.25" Y="2.25" Width="1.75" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -94,9 +94,9 @@
       <FileName>Strategies\Strategy.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Strategies.StrategyA">
+  <Class Name="MonteCarlo.Strategies.StrategyA">
     <Position X="0.5" Y="0.5" Width="1.75" />
-    <InheritanceLine Type="DiscreteSimulation.Strategies.Strategy" FixedFromPoint="true">
+    <InheritanceLine Type="MonteCarlo.Strategies.Strategy" FixedFromPoint="true">
       <Path>
         <Point X="3.25" Y="3.625" />
         <Point X="2.875" Y="3.625" />
@@ -109,9 +109,9 @@
       <FileName>Strategies\StrategyA.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Strategies.StrategyB">
+  <Class Name="MonteCarlo.Strategies.StrategyB">
     <Position X="0.5" Y="1.75" Width="1.75" />
-    <InheritanceLine Type="DiscreteSimulation.Strategies.Strategy" FixedFromPoint="true">
+    <InheritanceLine Type="MonteCarlo.Strategies.Strategy" FixedFromPoint="true">
       <Path>
         <Point X="3.25" Y="3.625" />
         <Point X="2.875" Y="3.625" />
@@ -124,9 +124,9 @@
       <FileName>Strategies\StrategyB.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Strategies.StrategyC">
+  <Class Name="MonteCarlo.Strategies.StrategyC">
     <Position X="0.5" Y="3" Width="1.75" />
-    <InheritanceLine Type="DiscreteSimulation.Strategies.Strategy" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+    <InheritanceLine Type="MonteCarlo.Strategies.Strategy" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
       <Path>
         <Point X="3.25" Y="3.625" />
         <Point X="2.481" Y="3.625" />
@@ -139,9 +139,9 @@
       <FileName>Strategies\StrategyC.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Strategies.StrategyD">
+  <Class Name="MonteCarlo.Strategies.StrategyD">
     <Position X="0.5" Y="4.25" Width="1.75" />
-    <InheritanceLine Type="DiscreteSimulation.Strategies.Strategy" FixedFromPoint="true">
+    <InheritanceLine Type="MonteCarlo.Strategies.Strategy" FixedFromPoint="true">
       <Path>
         <Point X="3.25" Y="3.625" />
         <Point X="2.875" Y="3.625" />
@@ -154,12 +154,12 @@
       <FileName>Strategies\StrategyD.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Strategies.StrategyX">
+  <Class Name="MonteCarlo.Strategies.StrategyX">
     <Position X="0.5" Y="5.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
-    <InheritanceLine Type="DiscreteSimulation.Strategies.Strategy" FixedFromPoint="true">
+    <InheritanceLine Type="MonteCarlo.Strategies.Strategy" FixedFromPoint="true">
       <Path>
         <Point X="3.25" Y="3.625" />
         <Point X="2.875" Y="3.625" />
@@ -172,14 +172,14 @@
       <FileName>Strategies\StrategyX.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Structures.EmpiricData&lt;T&gt;">
+  <Class Name="MonteCarlo.Structures.EmpiricData&lt;T&gt;">
     <Position X="9.5" Y="5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAACAAAAAAAAIAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Structures\EmpiricData.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Structures.GeneralRandom&lt;T&gt;">
+  <Class Name="MonteCarlo.Structures.GeneralRandom&lt;T&gt;">
     <Position X="14" Y="2.75" Width="1.75" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
@@ -189,21 +189,21 @@
       <FileName>Structures\GeneralRandom.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Structures.Pair&lt;T, U&gt;">
+  <Class Name="MonteCarlo.Structures.Pair&lt;T, U&gt;">
     <Position X="12" Y="5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAQAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Structures\Pair.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Utilities.Utility">
+  <Class Name="MonteCarlo.Utilities.Utility">
     <Position X="9.25" Y="12.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAQgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Utilities\Utility.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="DiscreteSimulation.Windows.BarChartWindow" BaseTypeListCollapsed="true">
+  <Class Name="MonteCarlo.Windows.BarChartWindow" BaseTypeListCollapsed="true">
     <Position X="9.25" Y="8.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
@@ -211,7 +211,7 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="DiscreteSimulation.Windows.MainWindow" BaseTypeListCollapsed="true">
+  <Class Name="MonteCarlo.Windows.MainWindow" BaseTypeListCollapsed="true">
     <Position X="6" Y="11.5" Width="1.75" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />

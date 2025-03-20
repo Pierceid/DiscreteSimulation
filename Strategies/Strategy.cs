@@ -1,8 +1,8 @@
-﻿using DiscreteSimulation.Randoms.Continuous;
-using DiscreteSimulation.Randoms.Discrete;
-using DiscreteSimulation.Structures;
+﻿using MonteCarlo.Randoms.Continuous;
+using MonteCarlo.Randoms.Discrete;
+using MonteCarlo.Structures;
 
-namespace DiscreteSimulation.Strategies {
+namespace MonteCarlo.Strategies {
     public abstract class Strategy {
         // Demand Distributions
         protected UniformD mufflerDemand;

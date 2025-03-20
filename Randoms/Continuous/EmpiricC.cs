@@ -1,6 +1,6 @@
-﻿using DiscreteSimulation.Structures;
+﻿using MonteCarlo.Structures;
 
-namespace DiscreteSimulation.Randoms.Continuous {
+namespace MonteCarlo.Randoms.Continuous {
     public class EmpiricC : GeneralRandom<double> {
         private List<EmpiricData<double>> samples;
         private List<UniformC> generators;

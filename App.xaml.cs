@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace DiscreteSimulation
+namespace MonteCarlo
 {
     /// <summary>
     /// Interaction logic for App.xaml
